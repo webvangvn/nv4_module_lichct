@@ -41,7 +41,7 @@ if ( $nv_Request->get_int( 'save', 'post' ) == 1 )
 	$week = $nv_Request->get_string( 'week', 'post', '', 1 );
     $begtime = $nv_Request->get_string( 'begtime', 'post', '', 1 );
 	unset($m);
-	if (preg_match("/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/",$begtime,$m))
+	if (preg_match("/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/",$begtime,$m))
 	{
 		$begtime = mktime( 0, 0, 0, $m[2], $m[1], $m[3]);
 	} else {
@@ -49,7 +49,7 @@ if ( $nv_Request->get_int( 'save', 'post' ) == 1 )
 	}
     $endtime = $nv_Request->get_string( 'endtime', 'post', '', 1 );
 	unset($m);
-	if (preg_match("/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/",$endtime,$m))
+	if (preg_match("/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/",$endtime,$m))
 	{
 		$endtime = mktime(23, 59, 59, $m[2], $m[1], $m[3]);
 	} else {
@@ -234,10 +234,10 @@ $contents .= "<tbody" . $class . ">\n";
 $contents .= "<tr>\n";
 $contents .= "<td>" . $lang_module['notice03'] . "</td>\n";
 $contents .= "<td>";
-$contents .= "<input name=\"begtime\" id=\"begtime\" value=\"" . nv_date("d.m.Y", $begtime) . "\" style=\"width: 90px;\" maxlength=\"10\" type=\"text\">\n";
+$contents .= "<input name=\"begtime\" id=\"begtime\" value=\"" . nv_date("d/m/Y", $begtime) . "\" style=\"width: 90px;\" maxlength=\"10\" type=\"text\">\n";
 
 $contents .= "" . $lang_module['notice04'] . "\n";
-$contents .= "<input name=\"endtime\" id=\"endtime\" value=\"" . nv_date("d.m.Y",$endtime) . "\" style=\"width: 90px;\" maxlength=\"10\"  type=\"text\">\n";
+$contents .= "<input name=\"endtime\" id=\"endtime\" value=\"" . nv_date("d/m/Y",$endtime) . "\" style=\"width: 90px;\" maxlength=\"10\"  type=\"text\">\n";
 
 $contents .= "</td>\n";
 $contents .= "</tr>\n";

@@ -46,8 +46,8 @@ if ( $num > 0 )
 			$contents .= "<td width=\"30%\" align=\"center\">" . $rows['full_name'] . "</td>\n";		
 		}
 	   	
-       	$contents .= "<td width=\"20%\" align=\"center\">" . nv_date("d.m.Y", $row['begtime']) . "</td>\n";
-       	$contents .= "<td width=\"20%\" align=\"center\">" . nv_date("d.m.Y",$row['endtime']) . "</td>\n";
+       	$contents .= "<td width=\"20%\" align=\"center\">" . nv_date("d/m/Y", $row['begtime']) . "</td>\n";
+       	$contents .= "<td width=\"20%\" align=\"center\">" . nv_date("d/m/Y",$row['endtime']) . "</td>\n";
        	$contents .= "<td align=\"center\"><span class=\"edit_icon\"><a href=\"" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=notice&amp;nid=" . $row['nid'] . "\">" . $lang_global['edit'] . "</a></span>\n";
        	$contents .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_del_content(" . $row['nid'] . ", '" . md5( $row['nid'] . session_id() ) . "')\">" . $lang_global['delete'] . "</a></span></td>\n";
        	$contents .= "</tr>\n";
