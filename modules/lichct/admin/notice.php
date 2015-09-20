@@ -177,13 +177,19 @@ if ( $nv_Request->get_int( 'save', 'post' ) == 1 )
 $contents = "";
 if ( $error != "" )
 {
+	
     $contents .= "<div class=\"quote\" style=\"width:780px;\">\n";
     $contents .= "<blockquote class=\"error\"><span>" . $error . "</span></blockquote>\n";
     $contents .= "</div>\n";
     $contents .= "<div class=\"clear\"></div>\n";
 }
-$my_head = "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/popcalendar/popcalendar.js\"></script>\n";
+
 $j=0;
+$contents .= "<link type=\"text/css\" href=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.core.css\" rel=\"stylesheet\" />";
+$contents .= "<link type=\"text/css\" href=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.theme.css\" rel=\"stylesheet\" />";
+$contents .= "<link type=\"text/css\" href=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.menu.css\" rel=\"stylesheet\" />";
+$contents .= "<link type=\"text/css\" href=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.autocomplete.css\" rel=\"stylesheet\" />";
+$contents .= "<link type=\"text/css\" href=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.datepicker.css\" rel=\"stylesheet\" />";
 $contents .= "<form action=\"" . $action . "\" enctype=\"multipart/form-data\" method=\"post\">";
 $contents .= "<input type=\"hidden\" name =\"" . NV_NAME_VARIABLE . "\"value=\"" . $module_name . "\" />";
 $contents .= "<input type=\"hidden\" name =\"" . NV_OP_VARIABLE . "\"value=\"" . $op . "\" />";
@@ -228,11 +234,11 @@ $contents .= "<tbody" . $class . ">\n";
 $contents .= "<tr>\n";
 $contents .= "<td>" . $lang_module['notice03'] . "</td>\n";
 $contents .= "<td>";
-$contents .= "<input name=\"begtime\" id=\"begtime\" value=\"" . nv_date("d.m.Y", $begtime) . "\" style=\"width: 90px;\" maxlength=\"10\" readonly=\"readonly\" type=\"text\">\n";
-$contents .= "<img src=\"" . NV_BASE_SITEURL . "images/calendar.jpg\" widht=\"18\" style=\"cursor: pointer; vertical-align: middle;\" onclick=\"popCalendar.show(this, 'begtime', 'dd.mm.yyyy', true);\" alt=\"\" height=\"17\">\n";
+$contents .= "<input name=\"begtime\" id=\"begtime\" value=\"" . nv_date("d.m.Y", $begtime) . "\" style=\"width: 90px;\" maxlength=\"10\" type=\"text\">\n";
+
 $contents .= "" . $lang_module['notice04'] . "\n";
-$contents .= "<input name=\"endtime\" id=\"endtime\" value=\"" . nv_date("d.m.Y",$endtime) . "\" style=\"width: 90px;\" maxlength=\"10\" readonly=\"readonly\" type=\"text\">\n";
-$contents .= "<img src=\"" . NV_BASE_SITEURL . "images/calendar.jpg\" widht=\"18\" style=\"cursor: pointer; vertical-align: middle;\" onclick=\"popCalendar.show(this, 'endtime', 'dd.mm.yyyy', true);\" alt=\"\" height=\"17\">\n";
+$contents .= "<input name=\"endtime\" id=\"endtime\" value=\"" . nv_date("d.m.Y",$endtime) . "\" style=\"width: 90px;\" maxlength=\"10\"  type=\"text\">\n";
+
 $contents .= "</td>\n";
 $contents .= "</tr>\n";
 $contents .= "</tbody>\n";
@@ -461,7 +467,24 @@ $contents .= "</tbody>\n";
 $contents .= "</table>\n";
 $contents .= "<br><div style=\"text-align:center\"><input type=\"submit\" name=\"submit\" value=\"" . $lang_module['notice_confirm'] . "\"></div>\n";
 $contents .= "</form>\n";
-
+$contents .= "<script type=\"text/javascript\" src=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.core.min.js\"></script>";
+$contents .= "<script type=\"text/javascript\" src=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.menu.min.js\"></script>";
+$contents .= "<script type=\"text/javascript\" src=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.autocomplete.min.js\"></script>";
+$contents .= "<script type=\"text/javascript\" src=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/ui/jquery.ui.datepicker.min.js\"></script>";
+$contents .= "<script type=\"text/javascript\" src=\"".NV_BASE_SITEURL."".NV_ASSETS_DIR."/js/language/jquery.ui.datepicker-".NV_LANG_INTERFACE.".js\"></script>";
+$contents .= "<script type=\"text/javascript\" >
+$(document).ready(function() {
+	$(\"#begtime,#endtime\").datepicker({
+		showOn : \"both\",
+		dateFormat : \"dd/mm/yy\",
+		changeMonth : true,
+		changeYear : true,
+		showOtherMonths : true,
+		buttonImage : nv_siteroot + \"assets/images/calendar.gif\",
+		buttonImageOnly : true
+	});
+});
+</script>";
 include ( NV_ROOTDIR . "/includes/header.php" );
 echo nv_admin_theme( $contents );
 include ( NV_ROOTDIR . "/includes/footer.php" );
