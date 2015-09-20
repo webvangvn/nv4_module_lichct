@@ -23,10 +23,11 @@ $bgcolor_1 = "#F2F2F2";//"#06FF83";
 $array_block_news = array();
 $result1 = "SELECT nid, idpart,week, begtime, endtime,monam,monpm,tueam,tuepm,wedam,wedpm,thuam,thupm,friam,fripm,satam,satpm,sunam,sunpm FROM " . NV_PREFIXLANG . "_" . $module_data . " WHERE idpart = 1 ORDER BY nid DESC LIMIT 0 , 1";
 $numstories = $db->query( $result1 );
-
+$num = $result1->rowcount();
 $a = 1; 
 $content = ""; 
-if($numstories > 0) { 
+if($num > 0) { 
+if($num > 0) { 
 $row =  $numstories->fetch();
 $tuan=$row['week'];
 
