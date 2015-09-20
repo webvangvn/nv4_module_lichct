@@ -21,14 +21,13 @@ $bgcolor_1 = "#F2F2F2";//"#06FF83";
 
 ############### Het phan khai bao ########################## 
 $array_block_news = array();
-$result1 = "SELECT nid, idpart,week, begtime, endtime,monam,monpm,tueam,tuepm,wedam,wedpm,thuam,thupm,friam,fripm,satam,satpm,sunam,sunpm FROM `" . NV_PREFIXLANG . "_" . $module_data . "` WHERE `idpart` = 1 ORDER BY `nid` DESC LIMIT 0 , 1";
+$result1 = "SELECT nid, idpart,week, begtime, endtime,monam,monpm,tueam,tuepm,wedam,wedpm,thuam,thupm,friam,fripm,satam,satpm,sunam,sunpm FROM " . NV_PREFIXLANG . "_" . $module_data . " WHERE idpart = 1 ORDER BY nid DESC LIMIT 0 , 1";
 $numstories = $db->query( $result1 );
 
 $a = 1; 
 $content = ""; 
 if($numstories > 0) { 
-$num=$db->query($result1);
-$row =  $num-rowcount();
+$row =  $numstories->fetch();
 $tuan=$row['week'];
 
 $content .= "<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\n<tr>\n<td align=\"center\"><strong>
