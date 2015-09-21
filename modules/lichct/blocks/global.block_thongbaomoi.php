@@ -23,7 +23,7 @@ $bgcolor_1 = "#F2F2F2";//"#06FF83";
 $array_block_news = array();
 $result1 = "SELECT nid, idpart,week, begtime, endtime,monam,monpm,tueam,tuepm,wedam,wedpm,thuam,thupm,friam,fripm,satam,satpm,sunam,sunpm FROM " . NV_PREFIXLANG . "_" . $module_data . " WHERE idpart = 1 ORDER BY nid DESC LIMIT 0 , 1";
 $numstories = $db->query( $result1 );
-$num = $result1->rowcount();
+$num = $numstories->rowcount();
 $a = 1; 
 $content = "";  
 if($num > 0) { 
@@ -38,8 +38,8 @@ $content .= "<marquee behavior= \"scroll\" align= \"center\" direction= \"up\" h
 } 
 //Bang chua tung ban tin
 $content .= "<table width=\"100%\" border=\"0\" bordercolor=\"#000080\" cellpadding=\"0\" cellspacing=\"1\">\n"; 
-
-while ($rowlast1 = $numstories->fetch()) {
+$numstorieslast = $db->query( $result1 );
+while ($rowlast1 = $numstorieslast->fetch()) {
 $id = intval($rowlast1['nid']);
 $catid = end( explode( ",", $rowlast1['idpart'] ) );
 $monam = stripslashes($rowlast1['monam']);
