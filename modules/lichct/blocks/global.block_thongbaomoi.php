@@ -25,8 +25,7 @@ $result1 = "SELECT nid, idpart,week, begtime, endtime,monam,monpm,tueam,tuepm,we
 $numstories = $db->query( $result1 );
 $num = $result1->rowcount();
 $a = 1; 
-$content = ""; 
-if($num > 0) { 
+$content = "";  
 if($num > 0) { 
 $row =  $numstories->fetch();
 $tuan=$row['week'];
